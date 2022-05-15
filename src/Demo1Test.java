@@ -86,7 +86,7 @@ class Demo1Test {
 			TreeNode cur = stack.pop();
 			System.out.println(cur.data + " ");
 			
-			//LIFO
+			//LIFO:  push right first -> then it will pop last
 			if (cur.right != null) stack.push(cur.right);
 			if (cur.left != null) stack.push(cur.left);
 		}
@@ -193,22 +193,22 @@ class Demo1Test {
 	
 	
 	// LinkedList: find merge node (two lists intercept)
+	// 1: 1 -> 2 -> 3 -> 7 -> 8
+	// 2:      5 -> 6 -> 7 -> 8
+	// 1: 1 -> 2 -> 3 -> 7 -> 8 -> 5 -> 6 -> 7 -> 8  (length 9)
+	// 2: 5 -> 6 -> 7 -> 8 -> 1 -> 2 -> 3 -> 7 -> 8  (length 9)
 	int findMergeNode(ListNode head1, ListNode head2) {
-		// 1: 1 -> 2 -> 3 -> 7 -> 8
-		// 2:      5 -> 6 -> 7 -> 8
-		// 1: 1 -> 2 -> 3 -> 7 -> 8 -> 5 -> 6 -> 7 -> 8  (length 9)
-		// 2: 5 -> 6 -> 7 -> 8 -> 1 -> 2 -> 3 -> 7 -> 8  (length 9)
 		
 		ListNode cur1 = head1;
 		ListNode cur2 = head2;
 		while (cur1 != cur2) {
 			if (cur1 == null) 
-				cur1 = head1;
+				cur1 = head2;
 			else 
 				cur1 = cur1.next;
 			
 			if (cur2 == null) 
-				cur2 = head2;
+				cur2 = head1;
 			else 
 				cur2 = cur2.next;
 		}
@@ -348,14 +348,15 @@ class Demo1Test {
 		System.out.println("expected value 3, actual value: " +
                 intToString.apply(123).length());
 
+        // Lambda (functional reference to an instance method)
+        Consumer<String> print = System.out::println;
+        print.accept("Coming to you directly from a lambda...");
+
 		// Lambda (functional reference to a Constructor)
 		Function<String, BigInteger> newBigInt = BigInteger::new;
         System.out.println("expected value: 123456789, actual value: "+
                 newBigInt.apply("123456789"));	
 		
-        // Lambda (functional reference to an instance method)
-        Consumer<String> print = System.out::println;
-        print.accept("Coming to you directly from a lambda...");
         
         // Below two are the same using static method concat()
         UnaryOperator<String> greet = x -> "Hello, ".concat(x);

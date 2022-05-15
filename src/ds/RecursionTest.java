@@ -18,7 +18,7 @@ class RecursionTest {
 		
 		System.out.println(factorial(4));
 	}
-	private static double power(double x, int n) {
+	public static double power(double x, int n) {
 		double y;
 		if (n == 0) return 1.0;
 		y = power(x, n/2);

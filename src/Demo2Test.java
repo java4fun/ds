@@ -36,7 +36,7 @@ class Demo2Test {
 	// 6. Count Vowels and Consonants
 	void findNumberOfVowelsAndConsonants(String input) {
 		String s = input.toLowerCase().trim();
-		String vowels = "aoiouy";
+		String vowels = "aoieuy";
 		int cntVowel = 0; int cntConsonant =0;
 		
 		char[] chars = s.toCharArray();
@@ -191,8 +191,8 @@ class Demo2Test {
 		firstRow.add(1);
 		triangle.add(firstRow);
 		
+		List<Integer> prevRow = firstRow;
 		for (int i = 1; i < n; i++) {  // 2nd to last
-			List<Integer> prevRow = new ArrayList<>();
 			List<Integer> curRow = new ArrayList<>();
 			
 			curRow.add(1);
@@ -202,6 +202,7 @@ class Demo2Test {
 			curRow.add(1);
 			
 			triangle.add(curRow);
+			prevRow = curRow;
 		}
 		return triangle;
 	}
